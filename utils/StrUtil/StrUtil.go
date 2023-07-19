@@ -1,7 +1,7 @@
 package StrUtil
 
 import (
-	"gotools/utils/SliceUtil"
+	"github.com/whoamixl/gotools/utils/SliceUtil"
 	"strings"
 	"unicode"
 )

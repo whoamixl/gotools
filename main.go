@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gotools/utils/StrUtil"
+	"github.com/whoamixl/gotools/utils/StrUtil"
 )
 
 func main() {
