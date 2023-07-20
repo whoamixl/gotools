@@ -2,11 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/whoamixl/gotools/utils/StrUtil"
+	"github.com/whoamixl/gotools/utils/HexUtil"
 )
 
 func main() {
-	s := "我是{}，今年{}岁"
-	str := StrUtil.Format(s, "yxl", "18")
+	str := HexUtil.EncodeHexStr("hello,world")
 	fmt.Println(str)
+	str1, err := HexUtil.DecodeHexStr(str)
+	if err == nil {
+		fmt.Println(str1)
+	}
 }
