@@ -60,7 +60,7 @@ func IsEmpty(str string) bool {
 // RemoveSuffix removes the specified suffix from a string.
 // If the string or suffix is empty, it returns the original string.
 // If the suffix is found at the end of the string, it removes and returns the modified string.
-func RemoveSuffix(str string, suffix string) string {
+func RemoveSuffix(str, suffix string) string {
 	if !IsEmpty(str) && !IsEmpty(suffix) {
 		if len(str) >= len(suffix) && str[len(str)-len(suffix):] == suffix {
 			return str[:len(str)-len(suffix)]
@@ -72,7 +72,7 @@ func RemoveSuffix(str string, suffix string) string {
 // RemovePrefix removes the specified prefix from a string.
 // If the string or prefix is empty, it returns the original string.
 // If the prefix is found at the beginning of the string, it removes and returns the modified string.
-func RemovePrefix(str string, prefix string) string {
+func RemovePrefix(str, prefix string) string {
 	if !IsEmpty(str) && !IsEmpty(prefix) {
 		if len(str) >= len(prefix) && str[0:len(prefix)] == prefix {
 			return str[len(prefix):]
@@ -109,7 +109,7 @@ func RemovePrefixIgnoreCase(str, prefix string) string {
 // If the string is empty, it returns the original string.
 // If the indices are out of range, it adjusts them accordingly.
 // It returns the extracted substring.
-func Sub(str string, fromIndex int, toIndex int) string {
+func Sub(str string, fromIndex, toIndex int) string {
 	if IsEmpty(str) {
 		return str
 	}
