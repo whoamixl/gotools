@@ -23,4 +23,10 @@ func main() {
 	b2, _ := NumberUtil.TruncateFloatString("4.33252", 3)
 	fmt.Println(b2)
 	fmt.Println("////////////////////")
+
+	c1 := NumberUtil.IsNumber("223.33")
+	c2 := NumberUtil.IsNumber("223")
+	c3 := NumberUtil.IsNumber("sss")
+	fmt.Println(c1, c2, c3)
+	fmt.Println(NumberUtil.GenerateRandomNumber(1, 59))
 }

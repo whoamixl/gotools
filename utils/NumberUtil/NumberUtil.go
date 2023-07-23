@@ -1,9 +1,13 @@
 package NumberUtil
 
 import (
+	"fmt"
 	"math"
 	"math/big"
+	"math/rand"
 	"strconv"
+	"strings"
+	"time"
 )
 
 // Add adds two floating-point numbers and returns the result and accuracy information.
@@ -94,4 +98,136 @@ func TruncateFloatString(numString string, decimalPlaces int) (float64, error) {
 	shift := math.Pow(10, float64(decimalPlaces))
 	truncated := math.Trunc(num*shift) / shift
 	return truncated, nil
+}
+
+// IsNumber checks if a string is a valid number.
+// It returns true if the string is a number, otherwise false.
+func IsNumber(input string) bool {
+	_, err := strconv.ParseFloat(input, 64)
+	return err == nil
+}
+
+// IsInteger checks if a given string value is an integer.
+// It returns true if the value is an integer, otherwise false.
+func IsInteger(value string) bool {
+	_, err := strconv.Atoi(value)
+	return err == nil
+}
+
+// IsFloat checks if a given string value is a float.
+// It returns true if the value is a float, otherwise false.
+func IsFloat(value string) bool {
+	_, err := strconv.ParseFloat(value, 64)
+	return err == nil
+}
+
+// IsPrime checks if a given number is prime.
+// It returns true if the number is prime, otherwise false.
+func IsPrime(num int) bool {
+	if num <= 1 {
+		return false
+	}
+	if num == 2 {
+		return true
+	}
+	if num%2 == 0 {
+		return false
+	}
+	sqrt := int(math.Sqrt(float64(num)))
+	for i := 3; i <= sqrt; i += 2 {
+		if num%i == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+// GenerateRandomNumber generates a random number between min and max (inclusive).
+func GenerateRandomNumber(min, max int) int {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Intn(max-min+1) + min
+}
+
+// GenerateRandomNumberSlice generates a slice of random numbers between min and max (inclusive).
+func GenerateRandomNumberSlice(min, max, size int) []int {
+	rand.Seed(time.Now().UnixNano())
+	numbers := make([]int, size)
+	for i := 0; i < size; i++ {
+		numbers[i] = rand.Intn(max-min+1) + min
+	}
+	return numbers
+}
+
+// GenerateRandomFloat generates a random number between min and max (inclusive).
+func GenerateRandomFloat(min, max float64) float64 {
+	rand.Seed(time.Now().UnixNano())
+	return min + rand.Float64()*(max-min)
+}
+
+// GenerateRandomFloatSlice generates a slice of random numbers between min and max (inclusive).
+func GenerateRandomFloatSlice(min, max float64, size int) []float64 {
+	rand.Seed(time.Now().UnixNano())
+	numbers := make([]float64, size)
+	for i := 0; i < size; i++ {
+		numbers[i] = min + rand.Float64()*(max-min)
+	}
+	return numbers
+}
+
+// Range generates a list of ordered integers based on the range and step.
+func Range(start, end, step int) []int {
+	if step <= 0 {
+		return nil
+	}
+	var result []int
+	for i := start; i <= end; i += step {
+		result = append(result, i)
+	}
+	return result
+}
+
+// Factorial calculates the factorial of the given number.
+func Factorial(n int) int {
+	if n < 0 {
+		return 0
+	} else if n == 0 {
+		return 1
+	} else {
+		result := 1
+		for i := 1; i <= n; i++ {
+			result *= i
+		}
+		return result
+	}
+}
+
+// Divisor calculates the greatest common divisor (GCD) of two integers.
+func Divisor(a, b int) int {
+	if b == 0 {
+		return a
+	}
+	return Divisor(b, a%b)
+}
+
+// Multiple calculates the least common multiple (LCM) of two numbers.
+func Multiple(a, b int) int {
+	return (a * b) / Divisor(a, b)
+}
+
+// GetBinaryStr converts an integer to its binary representation as a string.
+func GetBinaryStr(num int) string {
+	return strconv.FormatInt(int64(num), 2)
+}
+
+// BinaryToInt converts a binary string to an integer.
+func BinaryToInt(binaryStr string) (int64, error) {
+	return strconv.ParseInt(binaryStr, 2, 64)
+}
+
+// FloatToString converts a float64 number to a string and removes trailing zeros after the decimal point.
+func FloatToString(num float64) string {
+	str := fmt.Sprintf("%.2f", num)   // Convert the float to string with 2 decimal places
+	str = strings.TrimRight(str, "0") // Remove trailing zeros
+	str = strings.TrimRight(str, ".") // Remove decimal point if no decimal places left
+	return str
 }
