@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/whoamixl/gotools/utils/NumberUtil"
+	"github.com/whoamixl/gotools/utils/SliceUtil"
 )
 
 func main() {
@@ -29,4 +30,19 @@ func main() {
 	c3 := NumberUtil.IsNumber("sss")
 	fmt.Println(c1, c2, c3)
 	fmt.Println(NumberUtil.GenerateRandomNumber(1, 59))
+
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{4, 5, 6}
+	slice3 := []int{7, 8, 9}
+	result := SliceUtil.AddAll(slice1, slice2, slice3)
+	fmt.Println(result)
+
+	fmt.Println(SliceUtil.Range(1, 22, 2))
+	fmt.Println(SliceUtil.Split([]int{2, 3, 6, 7, 34, 34, 6, 7, 3}, 3))
+
+	keys := []string{"a", "b", "c"}
+	values := []int{1, 2, 3}
+	result2, _ := SliceUtil.Zip(keys, values)
+	fmt.Println(result2)
+
 }
