@@ -21,18 +21,27 @@ func AddAll[T any](slices ...[]T) []T {
 }
 
 // Range generate a int64 slice, params is start number, end number and step
-func Range(start, end, step int64) []int64 {
+func Range(start, end, step int64) ([]int64, error) {
+	if step <= 0 {
+		return nil, errors.New("step is not less than zero")
+	}
+	if !((end - start) > 0) {
+		return nil, errors.New("end must greater than start")
+	}
 	var result []int64
 	for i := start; i <= end; i += step {
 		result = append(result, i)
 	}
-	return result
+	return result, nil
 }
 
 // Split splits a slice into multiple sub-slices of equal size.
 // It takes a slice and a size parameter as input.
 // The function returns a 2-dimensional slice containing the sub-slices.
-func Split[T any](slices []T, size int64) [][]T {
+func Split[T any](slices []T, size int64) ([][]T, error) {
+	if size <= 0 {
+		return nil, errors.New("size is not less than zero")
+	}
 	length := int64(len(slices))
 	chunks := (length + size - 1) / size
 	result := make([][]T, chunks)
@@ -44,7 +53,7 @@ func Split[T any](slices []T, size int64) [][]T {
 		}
 		result[i] = slices[start:end]
 	}
-	return result
+	return result, nil
 }
 
 // Zip takes two arrays as input, the first array as keys and the second array as values.
