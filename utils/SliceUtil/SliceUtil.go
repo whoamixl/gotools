@@ -2,6 +2,8 @@ package SliceUtil
 
 import (
 	"errors"
+	"fmt"
+	"reflect"
 )
 
 // IsEmpty checks if a string slice is empty.
@@ -67,4 +69,42 @@ func Zip[T any, Y any](keys []T, values []Y) (map[interface{}]Y, error) {
 		result[keys[i]] = values[i]
 	}
 	return result, nil
+}
+
+// Contains checks if an element exists in a slice
+func Contains(slice interface{}, element interface{}) bool {
+	sliceValue := reflect.ValueOf(slice)
+	for i := 0; i < sliceValue.Len(); i++ {
+		item := sliceValue.Index(i).Interface()
+		if reflect.DeepEqual(item, element) {
+			return true
+		}
+	}
+	return false
+}
+
+// ToString make a slice to string
+func ToString[T any](slice []T) string {
+	str := ""
+	for i, v := range slice {
+		if i == len(slice)-1 {
+			str = str + fmt.Sprintf("%v", v)
+		} else {
+			str = str + fmt.Sprintf("%v", v) + ","
+		}
+	}
+	return str
+}
+
+// Join make a slice to string with join a string
+func Join[T any](slice []T, join string) string {
+	str := ""
+	for i, v := range slice {
+		if i == len(slice)-1 {
+			str = str + fmt.Sprintf("%v", v)
+		} else {
+			str = str + fmt.Sprintf("%v", v) + join
+		}
+	}
+	return str
 }

@@ -144,13 +144,13 @@ func IsPrime(num int) bool {
 
 // GenerateRandomNumber generates a random number between min and max (inclusive).
 func GenerateRandomNumber(min, max int) int {
-	rand.Seed(time.Now().UnixNano())
+	rand := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return rand.Intn(max-min+1) + min
 }
 
 // GenerateRandomNumberSlice generates a slice of random numbers between min and max (inclusive).
 func GenerateRandomNumberSlice(min, max, size int) []int {
-	rand.Seed(time.Now().UnixNano())
+	rand := rand.New(rand.NewSource(time.Now().UnixNano()))
 	numbers := make([]int, size)
 	for i := 0; i < size; i++ {
 		numbers[i] = rand.Intn(max-min+1) + min
@@ -160,13 +160,13 @@ func GenerateRandomNumberSlice(min, max, size int) []int {
 
 // GenerateRandomFloat generates a random number between min and max (inclusive).
 func GenerateRandomFloat(min, max float64) float64 {
-	rand.Seed(time.Now().UnixNano())
+	rand := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return min + rand.Float64()*(max-min)
 }
 
 // GenerateRandomFloatSlice generates a slice of random numbers between min and max (inclusive).
 func GenerateRandomFloatSlice(min, max float64, size int) []float64 {
-	rand.Seed(time.Now().UnixNano())
+	rand := rand.New(rand.NewSource(time.Now().UnixNano()))
 	numbers := make([]float64, size)
 	for i := 0; i < size; i++ {
 		numbers[i] = min + rand.Float64()*(max-min)
