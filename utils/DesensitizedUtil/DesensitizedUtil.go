@@ -4,6 +4,8 @@ import (
 	"errors"
 	"github.com/whoamixl/gotools/utils/NumberUtil"
 	"github.com/whoamixl/gotools/utils/SliceUtil"
+	"regexp"
+	"strings"
 )
 
 // UserId function takes a string parameter and returns a hidden version of the string.
@@ -51,6 +53,76 @@ func MobilePhone(str string) (string, error) {
 		return data, nil
 	}
 	return str, errors.New("The fixed phone number is legal")
+}
+
+// Address is a function that processes a string based on specific keywords present in it.
+// It takes a string parameter 'str' and returns a processed version of the string.
+func Address(str string) string {
+	if strings.Contains(str, AREA) {
+		index := strings.Index(str, AREA)
+		end := len(str) - index
+		data, _ := hide(str, 0, end)
+		return data
+	} else if strings.Contains(str, CITY) {
+		index := strings.Index(str, CITY)
+		end := len(str) - index
+		data, _ := hide(str, 0, end)
+		return data
+	} else if strings.Contains(str, PROVINCE) {
+		index := strings.Index(str, PROVINCE)
+		end := len(str) - index
+		data, _ := hide(str, 0, end)
+		return data
+	} else {
+		return str
+	}
+}
+
+// Email Desensitize your mail number
+func Email(str string) string {
+	if !checkEmail(str) {
+		return str
+	} else {
+		index := strings.Index(str, EMAIL_SYMBOL)
+		end := len(str) - index
+		data, _ := hide(str, 1, end)
+		return data
+	}
+}
+
+// Password Desensitize your password
+func Password(str string) string {
+	data, _ := hide(str, 0, 0)
+	return data
+}
+
+// CarId Desensitize your car id
+func CarId(str string) string {
+	if len(str) != 7 && !checkLicensePlate(str) {
+		return str
+	}
+	data, _ := hide(str, 3, 1)
+	return data
+}
+
+// BankId Desensitize your bank id
+func BankId(str string) string {
+	if !NumberUtil.IsNumber(str) && !SliceUtil.Contains([]int{16, 19, 17}, len(str)) {
+		return str
+	} else {
+		data, _ := hide(str, 4, 4)
+		return data
+	}
+}
+
+func checkLicensePlate(str string) bool {
+	licensePlateRegex := regexp.MustCompile(`^[\u4e00-\u9fa5]{1}[A-Z]{1}[A-Z_0-9]{5}$`)
+	return licensePlateRegex.MatchString(str)
+}
+
+func checkEmail(str string) bool {
+	emailRegex := regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
+	return emailRegex.MatchString(str)
 }
 
 // hide function is a generic function for hiding strings. It takes a string parameter and two integer parameters, start and end, and returns a hidden version of the string based on the specified start and end positions.

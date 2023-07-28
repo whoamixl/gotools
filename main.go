@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
+	"github.com/whoamixl/gotools/utils/CreditCodeUtil"
 	"github.com/whoamixl/gotools/utils/DesensitizedUtil"
 )
 
 func main() {
-	fmt.Println(DesensitizedUtil.UserId("12344"))
-	fmt.Println("qweerrt"[:])
-	fmt.Println(DesensitizedUtil.ChineseName("闫小龙"))
-	fmt.Println(DesensitizedUtil.IdCard("5137211998091", 1, 2))
-	fmt.Println(DesensitizedUtil.FixedPhone("09157518479x"))
-	fmt.Println(DesensitizedUtil.MobilePhone("18899999923"))
+
+	fmt.Println(DesensitizedUtil.Email("18899999923@qq.com"))
+	fmt.Println(DesensitizedUtil.Password("18899999923@qq.com"))
+	fmt.Println(CreditCodeUtil.CheckSocietyId("91310110666007217T"))
 }
