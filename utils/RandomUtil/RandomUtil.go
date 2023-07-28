@@ -1,3 +1,4 @@
+// Package RandomUtil 随机工具
 package RandomUtil
 
 import (

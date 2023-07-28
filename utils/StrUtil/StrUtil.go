@@ -1,3 +1,4 @@
+// Package StrUtil 字符串工具
 package StrUtil
 
 import (

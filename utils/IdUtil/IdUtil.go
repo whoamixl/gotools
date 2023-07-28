@@ -1,3 +1,4 @@
+// Package IdUtil id工具
 package IdUtil
 
 import (

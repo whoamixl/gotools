@@ -1,3 +1,4 @@
+// Package NumberUtil 数字工具
 package NumberUtil
 
 import (

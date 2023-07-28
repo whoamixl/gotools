@@ -1,4 +1,5 @@
-package DesensitizedUtil
+// Package utils 工具集
+package utils
 
 const (
 	AREA     = "区"
@@ -8,4 +9,9 @@ const (
 
 const (
 	EMAIL_SYMBOL = "@"
+)
+
+const (
+	ALL_TYPE = 1
+	NUMBER   = 2
 )

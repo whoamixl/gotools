@@ -10,5 +10,6 @@ func main() {
 
 	fmt.Println(DesensitizedUtil.Email("18899999923@qq.com"))
 	fmt.Println(DesensitizedUtil.Password("18899999923@qq.com"))
-	fmt.Println(CreditCodeUtil.CheckSocietyId("91310110666007217T"))
+	fmt.Println(CreditCodeUtil.CheckSocietyId("GJ23054659193LH21T"))
+	fmt.Println(CreditCodeUtil.GenerateRandomSocialCreditCode())
 }

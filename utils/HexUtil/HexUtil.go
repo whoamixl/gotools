@@ -1,3 +1,4 @@
+// Package HexUtil HEX工具
 package HexUtil
 
 import "encoding/hex"

@@ -1,3 +1,4 @@
+// Package SliceUtil 切片工具
 package SliceUtil
 
 import (
