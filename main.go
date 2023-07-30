@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/whoamixl/gotools/utils/TreeUtil"
 	"time"
 )
 
@@ -33,4 +35,35 @@ func main() {
 	days := now.Sub(then).Hours() / 24
 	fmt.Println("两个时间之间有", days, "天")
 
+	type Person struct {
+		Name string
+		Age  int
+	}
+
+	list := []TreeUtil.NodeList{
+		{Id: "1", Pid: "", Atb: Person{
+			Name: "Parent 1",
+			Age:  10,
+		}},
+		{Id: "2", Pid: "1", Atb: Person{
+			Name: "Child 1",
+			Age:  1,
+		}},
+		{Id: "3", Pid: "1", Atb: Person{
+			Name: "Child 1",
+			Age:  1,
+		}},
+		{Id: "4", Pid: "2", Atb: Person{
+			Name: "Child 1",
+			Age:  1,
+		}},
+	}
+
+	jsonData, err := json.Marshal(TreeUtil.Build(list))
+	if err != nil {
+		fmt.Println("转换为 JSON 失败：", err)
+		return
+	}
+	// 打印 JSON 字符串
+	fmt.Println(string(jsonData))
 }
