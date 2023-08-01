@@ -1,17 +1,23 @@
 // Package utils 工具集
 package utils
 
-const (
-	AREA     = "区"
-	CITY     = "市"
-	PROVINCE = "省"
-)
+type PreLevel string
 
 const (
-	EMAIL_SYMBOL = "@"
+	AREA     PreLevel = "区"
+	CITY     PreLevel = "市"
+	PROVINCE PreLevel = "省"
 )
 
+type Email string
+
 const (
-	ALL_TYPE = 1
-	NUMBER   = 2
+	EMAIL_SYMBOL Email = "@"
+)
+
+type GeneratorType int
+
+const (
+	ALL_TYPE GeneratorType = 1
+	NUMBER   GeneratorType = 2
 )

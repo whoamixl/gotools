@@ -60,18 +60,18 @@ func MobilePhone(str string) (string, error) {
 // Address is a function that processes a string based on specific keywords present in it.
 // It takes a string parameter 'str' and returns a processed version of the string.
 func Address(str string) string {
-	if strings.Contains(str, utils.AREA) {
-		index := strings.Index(str, utils.AREA)
+	if strings.Contains(str, string(utils.AREA)) {
+		index := strings.Index(str, string(utils.AREA))
 		end := len(str) - index
 		data, _ := hide(str, 0, end)
 		return data
-	} else if strings.Contains(str, utils.CITY) {
-		index := strings.Index(str, utils.CITY)
+	} else if strings.Contains(str, string(utils.CITY)) {
+		index := strings.Index(str, string(utils.CITY))
 		end := len(str) - index
 		data, _ := hide(str, 0, end)
 		return data
-	} else if strings.Contains(str, utils.PROVINCE) {
-		index := strings.Index(str, utils.PROVINCE)
+	} else if strings.Contains(str, string(utils.PROVINCE)) {
+		index := strings.Index(str, string(utils.PROVINCE))
 		end := len(str) - index
 		data, _ := hide(str, 0, end)
 		return data
@@ -85,7 +85,7 @@ func Email(str string) string {
 	if !checkEmail(str) {
 		return str
 	} else {
-		index := strings.Index(str, utils.EMAIL_SYMBOL)
+		index := strings.Index(str, string(utils.EMAIL_SYMBOL))
 		end := len(str) - index
 		data, _ := hide(str, 1, end)
 		return data

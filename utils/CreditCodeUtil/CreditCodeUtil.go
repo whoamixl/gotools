@@ -29,7 +29,7 @@ func GenerateRandomSocialCreditCode() string {
 	code += checkCode
 	return code
 }
-func generateRandomCharacter(ty int) string {
+func generateRandomCharacter(ty utils.GeneratorType) string {
 	characters := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	if utils.NUMBER == ty {
 		characters = "0123456789"
@@ -39,7 +39,7 @@ func generateRandomCharacter(ty int) string {
 	index := rand.Intn(len(characters))
 	return string(characters[index])
 }
-func generateRandomNumberString(length, ty int) string {
+func generateRandomNumberString(length int, ty utils.GeneratorType) string {
 	numberString := ""
 	for i := 0; i < length; i++ {
 		numberString += generateRandomCharacter(ty)

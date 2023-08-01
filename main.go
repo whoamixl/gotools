@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/whoamixl/gotools/net/HttpUtil"
+	"github.com/whoamixl/gotools/utils/ExcelUtil"
 )
 
 func main() {
-	c := HttpUtil.NewClient()
-	m := map[string]string{"ip": "47.100.247.211", "port": "22"}
-	r, _ := c.Url("http://test.inis.cn/api/other/ping").Method(HttpUtil.GET).Param(m).Send()
-	fmt.Println(r.StatusCode, r.Body)
+	excel := ExcelUtil.NewExcelUtil("./test.xlsx")
+	excel.AddSheet("Sheet1")
+	excel.Write("Sheet1", []string{"Hello", "World"})
+	excel.Write("Sheet1", []string{"你好", "世界"})
+	excel.Write("Sheet1", []string{"你好", "世界"})
+	excel.Save()
+	fmt.Println("Excel file saved as output.csv")
 }

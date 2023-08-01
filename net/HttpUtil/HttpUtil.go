@@ -74,14 +74,10 @@ func send(method Method, url string, header map[string]string, body map[string]i
 	} else {
 		req, err = http.NewRequest(string(method), url, bytes.NewBuffer(byteB))
 	}
-
-	// 跳过https ssl
 	transport := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: transport}
-
-	// 设置请求参数
 	if param != nil {
 		q := req.URL.Query()
 		for k, v := range param {
@@ -98,13 +94,11 @@ func send(method Method, url string, header map[string]string, body map[string]i
 			req.Header.Set(k, v)
 		}
 	}
-	// 发送请求
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
-	// 读取响应
 	bodyR, errR := io.ReadAll(resp.Body)
 	if errR != nil {
 		return nil, errR
